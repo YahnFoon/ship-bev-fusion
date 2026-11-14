@@ -14,5 +14,7 @@ copy, use the paths below or pass the path to the training or inference command.
 To reproduce Stage 1, start from the in-domain initializer listed above. The
 shared joint-training reference was trained with seed `4281387`.
 
-The joint checkpoint contains both the camera segmentation and fusion weights.
-Load checkpoints from sources you trust.
+For inference, pass one of the trained joint checkpoints to
+`inference.py --checkpoint`. It contains the Mask2Former parameters and all
+fusion parameters, including the ResNet-18 backbone. The Stage 1 checkpoint
+paths above are for training.

@@ -6,9 +6,9 @@ weights the RGB inputs with these masks, projects their features onto the water
 plane, and predicts the BEV mask with deformable attention.
 
 Use the [installation instructions](docs/INSTALL.md) to set up the environment
-for dataset preparation and evaluation of saved predictions. The joint model
-requires the MVDeTr runtime files and checkpoints listed there. Those files are
-pending separate release.
+for dataset preparation and evaluation of saved predictions. Joint inference
+requires the adapted MVDeTr source files and a trained Ship BEV Fusion
+checkpoint. Both are pending separate release.
 
 ## Data
 

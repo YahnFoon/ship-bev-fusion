@@ -35,8 +35,11 @@ transformer and output head. Our local runtime includes changes to the
 reference-point setup and batched fusion. The upstream checkout alone does
 not reproduce those changes. The additional runtime files are listed in
 [licensing/blocked_source_paths.txt](../licensing/blocked_source_paths.txt).
-See the [upstream licensing request](https://github.com/hou-yz/MVDeTr/issues/10)
-and [checkpoint paths](../weights/README.md).
+See the [upstream licensing request](https://github.com/hou-yz/MVDeTr/issues/10).
+
+The fusion backbone uses `pretrained: false` in the paper configurations.
+Inference loads both Mask2Former and fusion parameters from one trained
+[Ship BEV Fusion checkpoint](../weights/README.md).
 
 For CUDA fusion with the local runtime available, build the included attention
 operator with the same toolkit and interpreter.
