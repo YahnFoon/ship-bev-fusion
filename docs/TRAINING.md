@@ -1,9 +1,8 @@
 # Training
 
 Run from the repository root with the [dataset](../data/README.md) under
-`data/indoor`. The training and validation data come from the 81.5 mm water
-level. All three runs use the same fixed condition splits and seeds
-`20260510`, `20260511`, and `20260512`.
+`data/indoor`. Train and validate on the fixed condition splits at 81.5 mm.
+The three runs use seeds `20260510`, `20260511`, and `20260512`.
 
 ## Stage 1 camera segmentation
 
@@ -40,11 +39,14 @@ PYTHONPATH=MVDeTr python -m ship_bev_fusion.mvdetr_rgb_precompute_cache \
 python -m training.train --config configs/ours/seed20260510.yaml
 ```
 
-Reuse the cache with the other two seed configurations. The training recipe
-uses 24 epochs, batch size 6, FP32, TF32 disabled, and AdamW with learning
-rates of 1e-4 for Mask2Former and 2e-4 for the fusion model. The background
-weight in the RGB overlay is 0.25. The BEV loss uses positive BCE weight 10 and
-Dice weight 1. The paper's CUDA run used an 80 GB GPU. The trainer selects the
-checkpoint by validation Dice and saves a separate recovery checkpoint at
-each epoch. To resume, use the same configuration and output directory with
-`--resume`.
+Reuse the cache for the other two seeds. Training uses 24 epochs, batch size 6,
+FP32 with TF32 disabled, and AdamW with learning rates of 1e-4 for Mask2Former
+and 2e-4 for the fusion model. The RGB overlay uses a background weight of 0.25.
+The BEV loss uses positive BCE weight 10 and Dice weight 1. The reported runs
+used an 80 GB GPU.
+
+The trainer saves the best epoch by validation Dice and the latest epoch for
+resuming. Use `--resume` with the same configuration and output directory. Both
+checkpoints contain the resolved local configuration. The checkpoints listed
+in the [weights directory](../weights/README.md) are prepared separately for
+sharing.

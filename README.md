@@ -1,20 +1,20 @@
 # Ship BEV Fusion
 
-This project segments ships in a bird's-eye-view (BEV) grid from four synchronized
-cameras. Mask2Former estimates a foreground mask in each view. The fusion model
-uses the masks to weight RGB inputs, projects features onto the water plane, and
-predicts a BEV mask with deformable attention.
+Ship BEV Fusion segments ships in bird's-eye view (BEV) from four synchronized
+cameras. Mask2Former estimates a ship mask for each view. The fusion model
+weights the RGB inputs with these masks, projects their features onto the water
+plane, and predicts the BEV mask with deformable attention.
 
-The proposed method's training, inference and evaluation code is here. Running
-the joint model also requires the MVDeTr components and checkpoints listed in
-[Installation](docs/INSTALL.md). Those files are pending separate release.
-Dataset preparation and evaluation of saved predictions can run without them.
+Use the [installation instructions](docs/INSTALL.md) to set up the environment
+for dataset preparation and evaluation of saved predictions. The joint model
+requires the MVDeTr runtime files and checkpoints listed there. Those files are
+pending separate release.
 
 ## Data
 
-The indoor dataset contains synchronized videos, COCO RLE masks, calibration and
-fixed condition splits for three water heights. Use an existing copy under
-`data/indoor` or follow the [dataset instructions](data/README.md).
+The indoor dataset contains synchronized videos, COCO RLE masks, camera
+calibration, and fixed splits for three water heights. Download the archives or
+point the configs to a local copy using the [dataset instructions](data/README.md).
 
 | Water height | Split | Conditions | Retained frames |
 |---|---|---:|---:|
@@ -24,7 +24,7 @@ fixed condition splits for three water heights. Use an existing copy under
 | 101.5 mm (`water11`) | Test | 93 | 20,749 |
 | 121.5 mm (`water13`) | Test | 92 | 20,292 |
 
-## Experiments
+## Running the code
 
 - [Installation](docs/INSTALL.md)
 - [Training](docs/TRAINING.md)

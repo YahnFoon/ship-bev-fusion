@@ -1,9 +1,8 @@
 # Inference and evaluation
 
-Run from the repository root. The complete model requires the
-[fusion runtime](INSTALL.md#mask2former-and-joint-fusion), an
-[indoor dataset](../data/README.md) copy and a joint
-[checkpoint](../weights/README.md).
+Run from the repository root. Inference requires the
+[fusion runtime](INSTALL.md#mask2former-and-joint-fusion), the
+[indoor dataset](../data/README.md), and a joint [checkpoint](../weights/README.md).
 
 ```bash
 python inference.py --config configs/evaluation/ours_water9.yaml \
@@ -12,13 +11,13 @@ python inference.py --config configs/evaluation/ours_water9.yaml \
 ```
 
 For a single-frame CPU check, add `--device cpu --max-frames 1` and use a new
-output directory. The output path is also needed by the evaluation commands. Use the same checkpoint and the corresponding
-`ours_water11.yaml` or `ours_water13.yaml` for cross-water evaluation.
-Each configuration sets the calibration plane to that test water height.
+output directory. For cross-water evaluation, keep the checkpoint and use
+`ours_water11.yaml` or `ours_water13.yaml` to set the corresponding calibration
+plane.
 
-Evaluate exported predictions with the same water height and split. The
-evaluator uses masks and scores from the export and calibration from the
-dataset. It does not load the fusion model.
+The evaluator reads masks and scores from the export and calibration from the
+dataset. Use `--method` to pass the inference output directory. The prediction
+manifest records NPZ paths relative to that directory.
 
 ```bash
 python -m scripts.evaluate_indoor_20260510_saved_predictions \
@@ -34,5 +33,8 @@ python -m evaluation.condition_ap \
 
 The evaluator reports overlap, contour, centroid, clearance, heading and
 COCO AP metrics. The condition AP command reports per-condition and pooled
-COCO AP. Both use the exported sample identities to pair predictions and
-reference masks.
+COCO AP. Both pair predictions and reference masks by condition and frame index.
+
+The `run_config_resolved.json` files record paths from the machine that ran
+inference or evaluation. Replace private paths before sharing these files. Use
+`--data-root` to point evaluation at the recipient's dataset copy.

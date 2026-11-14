@@ -116,6 +116,8 @@ class StreamingSplitWriter:
         self._height, self._width = int(logits.shape[1]), int(logits.shape[2])
         logits_path = self.logits_root / f"{condition}.npz"
         target_path = self.target_root / f"{condition}.npz"
+        logits_ref = Path(os.path.relpath(logits_path, self.output_dir)).as_posix()
+        target_ref = Path(os.path.relpath(target_path, self.output_dir)).as_posix()
         np.savez_compressed(logits_path, frame_indices=frames, logits=logits)
         if target_path.exists():
             with np.load(target_path, allow_pickle=False) as cached:
@@ -169,8 +171,8 @@ class StreamingSplitWriter:
                     "frame_index": int(frame_index),
                     "image_id": self._image_id,
                     "npz_index": row_idx,
-                    "logits_npz": str(logits_path),
-                    "target_npz": str(target_path),
+                    "logits_npz": logits_ref,
+                    "target_npz": target_ref,
                 }
             )
             self._image_id += 1
