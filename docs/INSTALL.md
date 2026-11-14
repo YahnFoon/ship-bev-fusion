@@ -33,9 +33,11 @@ The joint model imports the MVDeTr implementation under
 backbone, projection helper, reference map, deformable world-feature
 transformer and output head. Our local runtime includes changes to the
 reference-point setup and batched fusion. The upstream checkout alone does
-not reproduce those changes. The additional runtime files are listed in
-[licensing/blocked_source_paths.txt](../licensing/blocked_source_paths.txt).
-See the [upstream licensing request](https://github.com/hou-yz/MVDeTr/issues/10).
+not reproduce those changes. The four model files
+(`models/trans_world_feat.py`, `models/mvdetr.py`, `models/resnet.py`, and
+`utils/projection.py`) and their imports are outside the current release.
+See the [excluded source list](../licensing/blocked_source_paths.txt) and the
+[upstream licensing request](https://github.com/hou-yz/MVDeTr/issues/10).
 
 The fusion backbone uses `pretrained: false` in the paper configurations.
 Inference loads both Mask2Former and fusion parameters from one trained

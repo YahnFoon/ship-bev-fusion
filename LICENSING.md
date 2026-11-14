@@ -11,7 +11,7 @@ DETR source also contains its [operator license](MVDeTr/multiview_detector/model
 See [NOTICE](NOTICE) for attribution.
 
 The additional MVDeTr implementation used in the paper is external to this
-code release. See the [list of runtime files](licensing/blocked_source_paths.txt)
+code release. See the [excluded source list](licensing/blocked_source_paths.txt)
 and the [upstream licensing request](https://github.com/hou-yz/MVDeTr/issues/10).
 Installed dependencies are governed by their respective licenses.
 

@@ -1,6 +1,11 @@
 Ship BEV Fusion
 Copyright (c) 2026 Ship BEV Fusion contributors
 
+MVDeTr
+Yunzhong Hou and Liang Zheng
+https://github.com/hou-yz/MVDeTr/tree/66cae15382066ef009780fd1891543f5d5bdc75d
+The Ship BEV Fusion architecture builds on the MVDeTr fusion implementation.
+
 Deformable DETR
 Copyright (c) 2020 SenseTime. All Rights Reserved.
 https://github.com/fundamentalvision/Deformable-DETR

@@ -5,10 +5,11 @@ cameras. Mask2Former estimates a ship mask for each view. The fusion model
 weights the RGB inputs with these masks, projects their features onto the water
 plane, and predicts the BEV mask with deformable attention.
 
-Use the [installation instructions](docs/INSTALL.md) to set up the environment
-for dataset preparation and evaluation of saved predictions. Joint inference
-requires the adapted MVDeTr source files and a trained Ship BEV Fusion
-checkpoint. Both are pending separate release.
+Use the [installation instructions](docs/INSTALL.md) to prepare the dataset
+or evaluate saved predictions. Joint training and inference also require the
+adapted MVDeTr source files and Ship BEV Fusion checkpoints. The source files
+are awaiting redistribution permission, and the checkpoints are pending a
+separate release.
 
 ## Data
 
@@ -31,7 +32,16 @@ point the configs to a local copy using the [dataset instructions](data/README.m
 - [Inference and evaluation](docs/EVALUATION.md)
 - [Checkpoint paths](weights/README.md)
 
-The fusion model builds on [MVDeTr](https://github.com/hou-yz/MVDeTr) and uses
-operators from [Deformable DETR](https://github.com/fundamentalvision/Deformable-DETR).
+## Acknowledgments
+
+We thank Yunzhong Hou and Liang Zheng for sharing
+[MVDeTr](https://github.com/hou-yz/MVDeTr). Our BEV fusion stage builds on their
+work, including the deformable fusion module, reference-point generation,
+camera projection helpers, and ResNet-18 backbone. See their
+[ACM Multimedia 2021 paper](https://doi.org/10.1145/3474085.3475310).
+
+The fusion stage uses attention operators from
+[Deformable DETR](https://github.com/fundamentalvision/Deformable-DETR).
 The image segmentation front end uses [MMDetection](https://github.com/open-mmlab/mmdetection).
-See [Licensing](LICENSING.md) for the original code, third-party code and dataset terms.
+
+See [Licensing](LICENSING.md) for code and dataset terms.

@@ -1,6 +1,7 @@
 # Modified for Ship BEV Fusion: PyTorch attention fallback and export support.
 # ------------------------------------------------------------------------------------------------
 # Deformable DETR
+# Imported via https://github.com/hou-yz/MVDeTr (66cae1538206).
 # Copyright (c) 2020 SenseTime. All Rights Reserved.
 # Licensed under the Apache License, Version 2.0 [see LICENSE for details]
 # ------------------------------------------------------------------------------------------------

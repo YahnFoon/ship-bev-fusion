@@ -10,6 +10,7 @@ from torch import nn
 import torch.nn.functional as F
 from kornia.geometry.transform import warp_perspective
 
+# Fusion components from https://github.com/hou-yz/MVDeTr (66cae1538206).
 try:
     from multiview_detector.models.conv_world_feat import ConvWorldFeat, DeformConvWorldFeat
     from multiview_detector.models.mvdetr import create_reference_map, output_head
