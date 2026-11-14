@@ -1,11 +1,22 @@
-# Ship BEV Fusion Indoor Dataset v1.0
+# Ship BEV Fusion
 
-**Code is coming soon.**
+This project segments ships in a bird's-eye-view (BEV) grid from four synchronized
+cameras. Mask2Former estimates a foreground mask in each view. The fusion model
+uses the masks to weight RGB inputs, projects features onto the water plane, and
+predicts a BEV mask with deformable attention.
 
-Synchronized multi-view ship videos, COCO RLE masks, camera calibration and
-fixed experiment splits for bird’s-eye-view (BEV) ship segmentation.
+The proposed method's training, inference and evaluation code is here. Running
+the joint model also requires the MVDeTr components and checkpoints listed in
+[Installation](docs/INSTALL.md). Those files are pending separate release.
+Dataset preparation and evaluation of saved predictions can run without them.
 
-| Water height | Split | Conditions | Retained synchronized frames |
+## Data
+
+The indoor dataset contains synchronized videos, COCO RLE masks, calibration and
+fixed condition splits for three water heights. Use an existing copy under
+`data/indoor` or follow the [dataset instructions](data/README.md).
+
+| Water height | Split | Conditions | Retained frames |
 |---|---|---:|---:|
 | 81.5 mm (`water9`) | Train | 76 | 13,434 |
 | 81.5 mm (`water9`) | Validation | 9 | 1,742 |
@@ -13,25 +24,14 @@ fixed experiment splits for bird’s-eye-view (BEV) ship segmentation.
 | 101.5 mm (`water11`) | Test | 93 | 20,749 |
 | 121.5 mm (`water13`) | Test | 92 | 20,292 |
 
-The four input cameras are `221`, `222`, `223` and `224`. The `GT` camera
-provides reference labels. The videos contain the original synchronized clips.
-The split manifests specify each condition and the retained frame indices.
-Frames with a COCO image record and no annotation represent empty masks.
+## Experiments
 
-Download the files from the [dataset release](https://github.com/YahnFoon/ship-bev-fusion/releases/tag/dataset-v1.0).
-Start with `metadata.zip`, which includes calibration, the file manifest, the
-license notice and all three fixed splits under `data/indoor/splits/`.
-Then download the ZIP files for the water heights and splits you need.
-`ASSETS.json` lists the conditions and retained frame counts in each ZIP.
-Extract all downloaded ZIPs into the same destination. Each archive preserves
-its relative paths under `data/`. The repeated `data/LICENSE` file is identical
-across the ZIPs.
+- [Installation](docs/INSTALL.md)
+- [Training](docs/TRAINING.md)
+- [Inference and evaluation](docs/EVALUATION.md)
+- [Checkpoint paths](weights/README.md)
 
-To verify the archives on Linux or WSL, place `SHA256SUMS` beside the downloaded
-ZIPs and run `sha256sum -c --ignore-missing SHA256SUMS`. After extracting the
-whole dataset, run `sha256sum -c data/SHA256SUMS` from the destination directory.
-
-The indoor dataset is available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-Credit the Ship BEV Fusion contributors and link to
-[Ship BEV Fusion Indoor Dataset](https://github.com/YahnFoon/ship-bev-fusion/releases/tag/dataset-v1.0).
-Please retain the license link and indicate changes if you adapt the dataset.
+The fusion model builds on [MVDeTr](https://github.com/hou-yz/MVDeTr) and uses
+operators from [Deformable DETR](https://github.com/fundamentalvision/Deformable-DETR).
+The image segmentation front end uses [MMDetection](https://github.com/open-mmlab/mmdetection).
+See [Licensing](LICENSING.md) for the original code, third-party code and dataset terms.

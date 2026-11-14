@@ -1,0 +1,13 @@
+Ship BEV Fusion
+Copyright (c) 2026 Ship BEV Fusion contributors
+
+Deformable DETR
+Copyright (c) 2020 SenseTime. All Rights Reserved.
+https://github.com/fundamentalvision/Deformable-DETR
+Licensed under the Apache License, Version 2.0. Original source notices are
+retained. The modified attention files identify their changes.
+
+MMDetection
+https://github.com/open-mmlab/mmdetection
+The Mask2Former configuration was adapted to the ship class and fixed splits.
+It retains its Apache-2.0 license.

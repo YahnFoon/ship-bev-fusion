@@ -1,0 +1,74 @@
+output_dir: outputs/ours/seed20260510
+dataset:
+  root: data/indoor
+  video_dir: Video/waterLevel_9/waterlevel_9_synced_conditions
+  mask_dir: Video/waterLevel_9/multiview_dino_sam2_masks_zero_valid
+  target_mask_dir: Video/waterLevel_9/multiview_dino_sam2_masks_zero_valid
+  camera_parameters_dir: .
+  intervals_csv: null
+  per_condition: true
+  split_mode: locked_manifest
+  split_manifest: splits/water9.json
+  input_camera_ids:
+  - '221'
+  - '222'
+  - '223'
+  - '224'
+  target_camera_id: GT
+  plane_z_mm: 81.5
+  bev_size:
+  - 512
+  - 288
+  input_size:
+  - 512
+  - 288
+  target_homography_image_size:
+  - 1920
+  - 1080
+  target_homography_direction: bev_to_image
+  target_homography_space: world
+  assume_world_xy_is_target_image: false
+  target_world_bounds_margin: 0.0
+  cache_dir: null
+  cache_camera_ids:
+  - '221'
+  - '222'
+  - '223'
+  - '224'
+  threshold: 127
+  input_mode: image_rgb
+  use_cache: false
+model:
+  z_mm: 81.5
+  arch: resnet18
+  feature_mode: image_resnet
+  input_channels: 3
+  world_feat_arch: deform_trans
+  deform_trans_reference_mode: camera
+  deform_trans_n_points: 12
+  deform_trans_hidden_dim: 128
+  bottleneck_dim: 128
+  outfeat_dim: 32
+  dropout: 0.0
+  pretrained: false
+stage2:
+  input_mode: rgb_mask_overlay
+  roi_background_weight: 0.25
+training:
+  epochs: 24
+  batch_size: 6
+  num_workers: 2
+  use_cache: false
+  amp: false
+  log_interval: 50
+  lr: 0.0002
+  lr_fusion: 0.0002
+  lr_mask2former: 0.0001
+  lr_scheduler: null
+  weight_decay: 0.0001
+  pos_weight: 10.0
+  dice_weight: 1.0
+  grad_clip: 1.0
+  boundary_iou_weight: 0.0
+  boundary_kernel_size: 5
+  seed: 20260510
